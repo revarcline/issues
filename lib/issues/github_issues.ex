@@ -9,7 +9,7 @@ defmodule Issues.GithubIssues do
   end
 
   def issues_url(user, project) do
-    "http://api.github.com/repos/#{user}/#{project}/issues"
+    "https://api.github.com/repos/#{user}/#{project}/issues"
   end
 
   def handle_response({:ok, %{status_code: 200, body: body}}) do
