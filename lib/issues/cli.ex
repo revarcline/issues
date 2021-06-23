@@ -8,7 +8,7 @@ defmodule Issues.CLI do
 
   import Issues.TableFormatter, only: [print_table_for_columns: 2]
 
-  def run(argv) do
+  def main(argv) do
     argv
     |> parse_args
     |> process
@@ -50,7 +50,7 @@ defmodule Issues.CLI do
     """)
   end
 
-  def process([user, project, count]) do
+  def process({user, project, count}) do
     Issues.GithubIssues.fetch(user, project)
     |> decode_response()
     |> sort_into_descending_order()
