@@ -54,7 +54,7 @@ defmodule Issues.CLI do
     |> decode_response()
     |> sort_into_descending_order()
     |> last(count)
-    |> relevant_keys()
+    |> print_table_for_columns(["number", "created_at", "title"])
   end
 
   def decode_response({:ok, body}), do: body
@@ -75,37 +75,5 @@ defmodule Issues.CLI do
     |> Enum.sort(fn i1, i2 ->
       i1["created_at"] >= i2["created_at"]
     end)
-  end
-
-  def relevant_keys(issues) do
-    Enum.map(
-      issues,
-      &%{
-        number: &1["number"],
-        created_at: &1["created_at"],
-        title: &1["title"]
-      }
-    )
-  end
-
-  # sample display:
-  #  #  | created_at           | title
-  # ---------------------------------------------------------------------
-  # 889 | 2013-03-17T22:03:13z | MIX_Path environment variable (of sorts)
-
-  def display(issues) do
-    widths = get_width(issues)
-    # get widest of each field
-    # get key names
-    # format key line
-    # create full-width dashes
-    # format each line
-  end
-
-  def get_width(issues) do
-    Enum.map(issues, fn {key, value} -> {key, _widest(value_len, 0)} end)
-  end
-
-  def format_line({number, created_at, title}) do
   end
 end
