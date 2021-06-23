@@ -77,20 +77,6 @@ defmodule Issues.CLI do
     end)
   end
 
-  # sample display:
-  #  #  | created_at           | title
-  # ---------------------------------------------------------------------
-  # 889 | 2013-03-17T22:03:13z | MIX_Path environment variable (of sorts)
-
-  def display(issues) do
-    width = get_width(issues)
-    # get widest of each field
-    # get key names
-    # format key line
-    # create full-width dashes
-    # format each line
-  end
-
   def relevant_keys(issues) do
     Enum.map(
       issues,
@@ -102,10 +88,22 @@ defmodule Issues.CLI do
     )
   end
 
-  def get_width(issues) do
+  # sample display:
+  #  #  | created_at           | title
+  # ---------------------------------------------------------------------
+  # 889 | 2013-03-17T22:03:13z | MIX_Path environment variable (of sorts)
+
+  def display(issues) do
+    widths = get_width(issues)
+    # get widest of each field
+    # get key names
+    # format key line
+    # create full-width dashes
+    # format each line
   end
 
-  defp _widest(key) do
+  def get_width(issues) do
+    Enum.map(issues, fn {key, value} -> {key, _widest(value_len, 0)} end)
   end
 
   def format_line({number, created_at, title}) do
