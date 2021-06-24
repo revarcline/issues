@@ -2,9 +2,11 @@ defmodule Issues.TableFormatter do
   @moduledoc """
   takes in issue data and returns in the following format:
 
+  ```
    #  | created_at           | title
   ----+----------------------+-----------------------------------------
   889 | 2013-03-17T22:03:13z | MIX_Path environment variable (of sorts)
+  ```
   """
 
   import Enum, only: [each: 2, map: 2, map_join: 3, max: 1]
